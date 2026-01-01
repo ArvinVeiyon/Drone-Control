@@ -1,0 +1,24 @@
+{
+  "commands": [
+    "sudo visudo",
+    "ros2 run example_mode_manual_cpp example_mode_manual",
+    "source install/setup.bash",
+    "ros2 run collision_manual_mode collision_manual_node",
+    "ros2 run translation_node translation_node_bin",
+    "~/PX4-Autopilot/Tools/copy_to_ros_ws.sh .",
+    "sudo iptables -A OUTPUT -o drone-wfb -d 239.255.0.1 -p udp --dport 7400: -j DROP",
+    "sudo iptables -A FORWARD -o drone-wfb -d 239.255.0.1 -p udp --dport 7400: -j DROP",
+    "sudo tshark -i drone-wfb -q -z conv,udp",
+    "ros2 run rov_ext_cpp rov_ext",
+    "ros2 run rov_manual_cpp rov_manual",
+    "colcon build --packages-select rov_manual_cpp --cmake-clean-cache",
+    "sudo systemctl status ros2_px4_translation_node.service",
+    "ros2 topic echo --once /fmu/out/vehicle_control_mode",
+    "python3 ~/ros2_ws/fake_vo.py",
+    "ros2 run rov_collision_stop_cpp rov_collision_stop",
+    "ros2 run rov_collision_stop_cpp rov_collision_stop --ros-args --params-file ~/ros2_ws/src/rov_collision_stop/config/tune-20250910-104016.yaml",
+    "Vision Command",
+    "ffmpeg -thread_queue_size 4096     -f v4l2 -input_format mjpeg -video_size 1280x720 -i /dev/video2     -vf format=yuv420p     -c:v libx264 -preset ultrafast -b:v 3000K     -f rtp rtp://127.0.0.1:5602",
+    "cat /proc/net/rtl88x2eu/<wlan0>/thermal_state"
+  ]
+}

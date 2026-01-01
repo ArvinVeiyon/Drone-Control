@@ -1,0 +1,17 @@
+{
+    "primary_ip": "10.5.6.100",
+    "primary_port": "2222",
+    "secondary_ip": "10.5.6.101",
+    "secondary_port": "2222",
+    "username": "roz",
+    "relay_ip": "10.5.6.100",
+    "relay_ssh_port": "22",
+    "relay_username": "vind-admin",
+    "connection_check_enabled": false,
+    "connection_check_interval": 3000000,
+    "wifi_iface": "wlx782288d993c0",
+    "wifi_temp": {
+        "offset": 32,
+        "scale": 2.5
+    }
+}
